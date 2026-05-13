@@ -1,0 +1,401 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<title>Weekly AI Digest — Issue #18</title>
+<!--[if mso]>
+<style type="text/css">
+  body, table, td { font-family: Arial, sans-serif !important; }
+
+  /* ════════════════════════════════════════════════════════════════
+     DARK MODE
+     Supported in Apple Mail (iOS/macOS), Outlook for Mac/iOS, Thunderbird
+     via prefers-color-scheme. Outlook.com / 365 handled via [data-ogsc]
+     parallel selectors. Gmail mobile runs its own auto-invert with no
+     opt-in — high-contrast design + .dm-protect on the logo chip keeps
+     critical elements legible there. !important is required to win
+     against inline styles. Color targeting uses [style*=] substring
+     matching so we don't need a class on every text element.
+     ════════════════════════════════════════════════════════════════ */
+  :root { color-scheme: light dark; supported-color-schemes: light dark; }
+
+  @media (prefers-color-scheme: dark) {
+    /* Card surface */
+    .email-container { background-color: #1a1f2a !important; }
+    body, #bodyTable { background-color: #0a0c10 !important; }
+    /* Body text */
+    [style*="color:#131c28"] { color: #f0f3f8 !important; }
+    [style*="color:#3a4655"] { color: #d2d8e2 !important; }
+    [style*="color:#7a8799"] { color: #9aa5b7 !important; }
+    [style*="color:#c3ccd9"] { color: #4a5566 !important; }
+    /* Borders */
+    [style*="border-bottom:1px solid #dde3ec"] { border-bottom-color: #2a3340 !important; }
+    [style*="border-bottom:1px solid #eef1f5"] { border-bottom-color: #2a3340 !important; }
+    [style*="border-top:1px solid #e6ebf2"] { border-top-color: #2a3340 !important; }
+    [style*="border-left:1px solid #e6ebf2"] { border-left-color: #2a3340 !important; }
+    /* Briefs section soft bg + hero soft bg (Variant B) */
+    [style*="background-color:#f8f9fb"] { background-color: #14181f !important; }
+    [style*="background-color:#edf5fa;padding:32px"] { background-color: #0f1d2e !important; }
+    /* Category tag chips: dim the soft pastel backgrounds so the dark text reads */
+    [style*="background-color:#edf5fa;padding:2px"] { background-color: #0a2233 !important; }
+    [style*="background-color:#e0f5fb;padding:2px"] { background-color: #0a2a36 !important; }
+    [style*="background-color:#fdf0ec;padding:2px"] { background-color: #2e1612 !important; }
+    [style*="background-color:#f0f7e0;padding:2px"] { background-color: #1d2a0a !important; }
+    [style*="background-color:#f3edfa;padding:2px"] { background-color: #1c1129 !important; }
+    /* Category tag text colors (dark on light) — lift to light tones */
+    [style*="color:#007db7;background-color:#edf5fa"] { color: #69c8e2 !important; }
+    [style*="color:#007a9e;background-color:#e0f5fb"] { color: #69c8e2 !important; }
+    [style*="color:#b83c18;background-color:#fdf0ec"] { color: #ff8a6a !important; }
+    [style*="color:#5a8020;background-color:#f0f7e0"] { color: #b9d77a !important; }
+    [style*="color:#7a4dab;background-color:#f3edfa"] { color: #c8a8ed !important; }
+    /* Banner CTA button: keep readable */
+    [style*="background-color:#002569;text-decoration:none;padding"] { background-color: #007db7 !important; }
+    [style*="background-color:#131c28;text-decoration:none;padding"] { background-color: #007db7 !important; }
+    /* Variant B's white header surface — darken to match card so its text reads */
+    [style*="background-color:#ffffff;padding:22px"] { background-color: #1a1f2a !important; }
+    /* Protect: logo chip and anything that must stay white */
+    .dm-protect, .dm-protect td { background-color: #ffffff !important; }
+  }
+
+  /* Outlook.com / Outlook 365 dark mode (proprietary attribute hooks) */
+  [data-ogsc] .email-container { background-color: #1a1f2a !important; }
+  [data-ogsc] [style*="color:#131c28"] { color: #f0f3f8 !important; }
+  [data-ogsc] [style*="color:#3a4655"] { color: #d2d8e2 !important; }
+  [data-ogsc] [style*="color:#7a8799"] { color: #9aa5b7 !important; }
+  [data-ogsc] [style*="color:#c3ccd9"] { color: #4a5566 !important; }
+  [data-ogsb] [style*="background-color:#f8f9fb"] { background-color: #14181f !important; }
+  [data-ogsb] [style*="background-color:#edf5fa;padding:32px"] { background-color: #0f1d2e !important; }
+  [data-ogsc] [style*="background-color:#ffffff;padding:22px"] { background-color: #1a1f2a !important; }
+  [data-ogsc] .dm-protect, [data-ogsc] .dm-protect td { background-color: #ffffff !important; }
+</style>
+<![endif]-->
+<style type="text/css">
+  body, #bodyTable { margin: 0 !important; padding: 0 !important; width: 100% !important; }
+  img { border: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; display: block; }
+  a { color: #007db7; }
+  table { border-collapse: collapse !important; }
+
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap');
+
+  @media only screen and (max-width: 620px) {
+    .email-container { width: 100% !important; }
+    .mobile-padding { padding: 20px !important; }
+    .hero-title { font-size: 22px !important; }
+    .stack { display: block !important; width: 100% !important; }
+    .stack-img { width: 100% !important; height: auto !important; max-width: 100% !important; margin-bottom: 14px !important; }
+    .stack-pad { padding-left: 0 !important; padding-right: 0 !important; }
+    /* Briefs grid: stack to 1 column on mobile and drop dividing borders */
+    .stack-col { display: block !important; width: 100% !important; padding: 18px 0 0 0 !important; border-left: 0 !important; }
+    .stack-col > div { padding-left: 0 !important; }
+  }
+</style>
+</head>
+
+<body style="margin:0;padding:0;background-color:#d8dde6;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">
+
+<div style="display:none;max-height:0;overflow:hidden;mso-hide:all;">This week: IMF AI governance report, OpenAI enterprise pricing, EU AI Act enforcement begins &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;</div>
+
+<table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" id="bodyTable" style="background-color:#d8dde6;">
+<tr><td align="center" valign="top" style="padding:32px 16px;">
+
+  <table role="presentation" class="email-container" border="0" cellpadding="0" cellspacing="0" width="600" style="background-color:#ffffff;">
+
+    <!-- ═══ TOP BAR ═══ -->
+    <tr>
+      <td height="5" style="background-color:#002569;font-size:0;line-height:0;">&nbsp;</td>
+    </tr>
+
+    <!-- ═══ HEADER ═══ -->
+    <tr>
+      <td style="background-color:#ffffff;padding:22px 40px;border-bottom:1px solid #dde3ec;">
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+          <tr>
+            <td valign="middle">
+              <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <!-- Logo on white header — your blue logo reads natively, no chip needed -->
+                  <td valign="middle" style="padding-right:14px;">
+                    <img src="https://placehold.co/120x40/ffffff/002569/png?text=ADB&amp;font=source-sans-pro" width="120" height="40" alt="ADB" style="display:block;width:120px;height:40px;border:0;outline:none;">
+                  </td>
+                  <td valign="middle">
+                    <p style="margin:0;font-family:'DM Sans',Arial,sans-serif;font-size:14px;font-weight:600;color:#131c28;">Weekly AI Digest</p>
+                    <p style="margin:0;font-family:'DM Sans',Arial,sans-serif;font-size:12px;color:#7a8799;">Asian Development Bank</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td valign="middle" align="right">
+              <p style="margin:0;font-family:'Courier New',Courier,monospace;font-size:10px;color:#7a8799;letter-spacing:0.06em;text-align:right;line-height:1.6;">MAY 4, 2026<br><span style="font-size:9px;opacity:0.7;">Issue No. 18</span></p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <!-- ═══ HERO ═══ -->
+    <tr>
+      <td style="background-color:#edf5fa;padding:32px 40px 38px;border-bottom:1px solid #dde3ec;">
+        <p style="margin:0 0 10px 0;font-family:'DM Sans',Arial,sans-serif;font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#007db7;">Weekly Digest</p>
+        <h1 class="hero-title" style="margin:0 0 12px 0;font-family:'Source Serif 4',Georgia,serif;font-size:26px;font-weight:400;line-height:1.3;color:#131c28;letter-spacing:-0.01em;">AI Reshapes Finance: From Risk Models to Real-Time Decision-Making</h1>
+        <p style="margin:0 0 20px 0;font-family:'DM Sans',Arial,sans-serif;font-size:14px;line-height:1.65;color:#3a4655;">Consequential AI developments in banking, financial services, and technology — curated for IT and finance professionals.</p>
+        <!--[if mso]>
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr>
+          <td width="28" height="4" style="background-color:#007db7;border-radius:2px;font-size:0;">&nbsp;</td>
+          <td width="5">&nbsp;</td>
+          <td width="28" height="4" style="background-color:#00a5d2;border-radius:2px;font-size:0;">&nbsp;</td>
+          <td width="5">&nbsp;</td>
+          <td width="28" height="4" style="background-color:#8dc63f;border-radius:2px;font-size:0;">&nbsp;</td>
+          <td width="5">&nbsp;</td>
+          <td width="28" height="4" style="background-color:#e9532b;border-radius:2px;font-size:0;">&nbsp;</td>
+        </tr></table>
+        <![endif]-->
+        <!--[if !mso]><!-->
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr>
+          <td width="28" height="4" style="background-color:#007db7;border-radius:2px;font-size:0;">&nbsp;</td>
+          <td width="5">&nbsp;</td>
+          <td width="28" height="4" style="background-color:#00a5d2;border-radius:2px;font-size:0;">&nbsp;</td>
+          <td width="5">&nbsp;</td>
+          <td width="28" height="4" style="background-color:#8dc63f;border-radius:2px;font-size:0;">&nbsp;</td>
+          <td width="5">&nbsp;</td>
+          <td width="28" height="4" style="background-color:#e9532b;border-radius:2px;font-size:0;">&nbsp;</td>
+        </tr></table>
+        <!--<![endif]-->
+      </td>
+    </tr>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         ARTICLE TYPE 1 — BANNER (lead / major internal release)
+         Full-bleed image, large headline, prominent positioning.
+         Use for the most important story of the issue.
+         ═══════════════════════════════════════════════════════════ -->
+    <tr>
+      <td style="padding:32px 40px 0;">
+        <p style="margin:0 0 18px 0;display:inline-block;font-family:'DM Sans',Arial,sans-serif;font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#e9532b;padding-bottom:8px;border-bottom:2px solid #e9532b;">Top Story &middot; Internal Release</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding:0 40px 8px;">
+        <a href="#" style="text-decoration:none;display:block;">
+          <img src="https://placehold.co/1040x500/002569/8dc63f/png?text=ADB+TECHNICAL+INSTRUCTIONS&amp;font=source-sans-pro" width="520" height="250" alt="ADB Technical Instructions cover photo placeholder" style="display:block;width:100%;max-width:520px;height:auto;background-color:#002569;border-radius:2px;">
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding:14px 40px 28px;border-bottom:1px solid #dde3ec;">
+        <p style="margin:0 0 10px;"><span style="font-family:'DM Sans',Arial,sans-serif;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#5a8020;background-color:#f0f7e0;padding:3px 9px;">Internal &middot; ITD Release</span></p>
+        <h2 style="margin:0 0 8px;font-family:'Source Serif 4',Georgia,serif;font-size:24px;font-weight:600;line-height:1.25;color:#131c28;letter-spacing:-0.01em;">
+          <a href="#" style="color:#131c28;text-decoration:none;">ADB Releases Technical Instructions on AI Use Across Operations</a>
+        </h2>
+        <p style="margin:0 0 12px;font-family:'DM Sans',Arial,sans-serif;font-size:11px;color:#7a8799;line-height:1.5;">
+          <a href="#" style="color:#3a4655;text-decoration:none;font-weight:500;">ADB &middot; ITD AI &amp; Big Data Team</a>
+          <span style="color:#c3ccd9;">&nbsp;&middot;&nbsp;</span>Published May 1, 2026
+          <span style="color:#c3ccd9;">&nbsp;&middot;&nbsp;</span>7 min read
+        </p>
+        <p style="margin:0 0 14px;font-family:'DM Sans',Arial,sans-serif;font-size:14px;line-height:1.65;color:#3a4655;">The Bank has issued comprehensive <a href="#" style="color:#007db7;text-decoration:underline;">technical instructions</a> covering the responsible use of AI tools in operational work — including approved use cases, data handling rules, vendor review procedures, and human-oversight requirements. The guidance applies to all staff using generative AI in <a href="#" style="color:#007db7;text-decoration:underline;">document drafting, analysis, and decision support</a>.</p>
+        <a href="#" style="font-family:'DM Sans',Arial,sans-serif;font-size:13px;font-weight:600;color:#ffffff;background-color:#002569;text-decoration:none;padding:10px 18px;display:inline-block;border-radius:3px;">Read the full instructions &rarr;</a>
+      </td>
+    </tr>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         ARTICLE TYPE 2 — STANDARD (medium-priority stories)
+         Image left, body right. Use for normal weekly stories.
+         ═══════════════════════════════════════════════════════════ -->
+    <tr>
+      <td style="padding:32px 40px 0;">
+        <p style="margin:0 0 18px 0;display:inline-block;font-family:'DM Sans',Arial,sans-serif;font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#007db7;padding-bottom:8px;border-bottom:2px solid #007db7;">This Week in AI</p>
+      </td>
+    </tr>
+
+    <!-- Standard story 1 — IMF -->
+    <tr><td style="padding:0 40px;">
+      <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="border-bottom:1px solid #dde3ec;">
+        <tr>
+          <td valign="top" width="24" style="padding:18px 12px 18px 0;font-family:'Courier New',Courier,monospace;font-size:11px;color:#007db7;">01</td>
+          <td valign="top" style="padding:18px 0;">
+            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+              <tr>
+                <td class="stack" width="200" valign="top" style="padding-right:18px;">
+                  <a href="#" style="text-decoration:none;">
+                    <img class="stack-img" src="https://placehold.co/400x280/002569/ffffff/png?text=IMF+REPORT&amp;font=source-sans-pro" width="200" height="140" alt="IMF report photo placeholder" style="display:block;width:200px;height:140px;background-color:#002569;border-radius:2px;">
+                  </a>
+                </td>
+                <td class="stack stack-pad" valign="top">
+                  <p style="margin:0 0 7px;"><span style="font-family:'DM Sans',Arial,sans-serif;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#007db7;background-color:#edf5fa;padding:2px 8px;">Banking</span></p>
+                  <p style="margin:0 0 7px;font-family:'Source Serif 4',Georgia,serif;font-size:16px;font-weight:600;line-height:1.35;color:#131c28;">
+                    <a href="#" style="color:#131c28;text-decoration:none;">IMF Calls for Global AI Governance Framework in Financial Sector</a>
+                  </p>
+                  <p style="margin:0 0 10px;font-family:'DM Sans',Arial,sans-serif;font-size:13px;line-height:1.62;color:#3a4655;">The <a href="#" style="color:#007db7;text-decoration:underline;">IMF released a landmark report</a> urging member nations to coordinate on AI regulation, citing risks from algorithmic trading amplifying systemic shocks and opacity in <a href="#" style="color:#007db7;text-decoration:underline;">credit-scoring models</a> used by major lenders.</p>
+                </td>
+              </tr>
+            </table>
+            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top:12px;">
+              <tr>
+                <td valign="middle">
+                  <p style="margin:0;font-family:'DM Sans',Arial,sans-serif;font-size:11px;color:#7a8799;line-height:1.5;">
+                    <a href="#" style="color:#3a4655;text-decoration:none;font-weight:500;">Reuters</a>
+                    <span style="color:#c3ccd9;">&nbsp;&middot;&nbsp;</span>By Hugo Salinas
+                    <span style="color:#c3ccd9;">&nbsp;&middot;&nbsp;</span>5 min read
+                  </p>
+                </td>
+                <td valign="middle" align="right">
+                  <a href="#" style="font-family:'DM Sans',Arial,sans-serif;font-size:12px;font-weight:500;color:#007db7;text-decoration:none;">Read more &rarr;</a>
+                </td>
+              </tr>
+            </table>
+            <div style="height:18px;line-height:18px;font-size:0;">&nbsp;</div>
+          </td>
+        </tr>
+      </table>
+    </td></tr>
+
+    <!-- Standard story 2 — EU AI Act -->
+    <tr><td style="padding:0 40px;">
+      <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+          <td valign="top" width="24" style="padding:18px 12px 18px 0;font-family:'Courier New',Courier,monospace;font-size:11px;color:#007db7;">02</td>
+          <td valign="top" style="padding:18px 0;">
+            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+              <tr>
+                <td class="stack" width="200" valign="top" style="padding-right:18px;">
+                  <a href="#" style="text-decoration:none;">
+                    <img class="stack-img" src="https://placehold.co/400x280/003399/ffd700/png?text=EU+AI+ACT&amp;font=source-sans-pro" width="200" height="140" alt="EU AI Act photo placeholder" style="display:block;width:200px;height:140px;background-color:#003399;border-radius:2px;">
+                  </a>
+                </td>
+                <td class="stack stack-pad" valign="top">
+                  <p style="margin:0 0 7px;"><span style="font-family:'DM Sans',Arial,sans-serif;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#b83c18;background-color:#fdf0ec;padding:2px 8px;">Risk &amp; Compliance</span></p>
+                  <p style="margin:0 0 7px;font-family:'Source Serif 4',Georgia,serif;font-size:16px;font-weight:600;line-height:1.35;color:#131c28;">
+                    <a href="#" style="color:#131c28;text-decoration:none;">EU AI Act Enforcement Begins: Obligations for High-Risk Financial AI</a>
+                  </p>
+                  <p style="margin:0 0 10px;font-family:'DM Sans',Arial,sans-serif;font-size:13px;line-height:1.62;color:#3a4655;"><a href="#" style="color:#007db7;text-decoration:underline;">Phase-one enforcement</a> is now in effect. Financial AI systems face mandatory audits, bias testing, and human-oversight requirements &mdash; including <a href="#" style="color:#007db7;text-decoration:underline;">non-EU firms with EU-facing products</a>.</p>
+                </td>
+              </tr>
+            </table>
+            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top:12px;">
+              <tr>
+                <td valign="middle">
+                  <p style="margin:0;font-family:'DM Sans',Arial,sans-serif;font-size:11px;color:#7a8799;line-height:1.5;">
+                    <a href="#" style="color:#3a4655;text-decoration:none;font-weight:500;">European Commission</a>
+                    <span style="color:#c3ccd9;">&nbsp;&middot;&nbsp;</span>Official Release
+                    <span style="color:#c3ccd9;">&nbsp;&middot;&nbsp;</span>3 min read
+                  </p>
+                </td>
+                <td valign="middle" align="right">
+                  <a href="#" style="font-family:'DM Sans',Arial,sans-serif;font-size:12px;font-weight:500;color:#007db7;text-decoration:none;">Read more &rarr;</a>
+                </td>
+              </tr>
+            </table>
+            <div style="height:18px;line-height:18px;font-size:0;">&nbsp;</div>
+          </td>
+        </tr>
+      </table>
+    </td></tr>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         ARTICLE TYPE 3 — BRIEFS (quick-hit grid)
+         2-col compact layout. Use for short items pushed lower:
+         smaller stories, cleared AI initiatives, news in brief.
+         ═══════════════════════════════════════════════════════════ -->
+    <tr>
+      <td style="background-color:#f8f9fb;padding:28px 40px 24px;">
+        <p style="margin:0 0 18px 0;display:inline-block;font-family:'DM Sans',Arial,sans-serif;font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#7a8799;padding-bottom:8px;border-bottom:2px solid #c3ccd9;">Also This Week &middot; In Brief</p>
+        <!-- 2-col brief grid -->
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+          <!-- Row 1: Briefs 1 & 2 -->
+          <tr>
+            <td class="stack-col" width="50%" valign="top" style="padding:0 12px 0 0;">
+              <p style="margin:0 0 6px;"><span style="font-family:'DM Sans',Arial,sans-serif;font-size:9px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#007a9e;background-color:#e0f5fb;padding:2px 7px;">Technology</span></p>
+              <p style="margin:0 0 6px;font-family:'Source Serif 4',Georgia,serif;font-size:14px;font-weight:600;line-height:1.32;color:#131c28;">
+                <a href="#" style="color:#131c28;text-decoration:none;">OpenAI Overhauls Enterprise API Pricing for Regulated Industries</a>
+              </p>
+              <p style="margin:0 0 7px;font-family:'DM Sans',Arial,sans-serif;font-size:12px;line-height:1.55;color:#3a4655;">Tiered pricing with <a href="#" style="color:#007db7;text-decoration:underline;">data-residency guarantees</a> for financial institutions.</p>
+              <p style="margin:0;font-family:'DM Sans',Arial,sans-serif;font-size:10px;color:#7a8799;line-height:1.4;">
+                <a href="#" style="color:#3a4655;text-decoration:none;font-weight:500;">Financial Times</a>
+                <span style="color:#c3ccd9;">&nbsp;&middot;&nbsp;</span>2 min
+              </p>
+            </td>
+            <td class="stack-col" width="50%" valign="top" style="padding:0 0 0 12px;border-left:1px solid #e6ebf2;">
+              <div style="padding-left:12px;">
+                <p style="margin:0 0 6px;"><span style="font-family:'DM Sans',Arial,sans-serif;font-size:9px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#007a9e;background-color:#e0f5fb;padding:2px 7px;">Infrastructure</span></p>
+                <p style="margin:0 0 6px;font-family:'Source Serif 4',Georgia,serif;font-size:14px;font-weight:600;line-height:1.32;color:#131c28;">
+                  <a href="#" style="color:#131c28;text-decoration:none;">SE Asian Data Centers Draw $12B in Q1 2026 Commitments</a>
+                </p>
+                <p style="margin:0 0 7px;font-family:'DM Sans',Arial,sans-serif;font-size:12px;line-height:1.55;color:#3a4655;"><a href="#" style="color:#007db7;text-decoration:underline;">Singapore, Malaysia, Indonesia</a> lead AI workload buildout.</p>
+                <p style="margin:0;font-family:'DM Sans',Arial,sans-serif;font-size:10px;color:#7a8799;line-height:1.4;">
+                  <a href="#" style="color:#3a4655;text-decoration:none;font-weight:500;">Bloomberg</a>
+                  <span style="color:#c3ccd9;">&nbsp;&middot;&nbsp;</span>By Yoolim Lee
+                  <span style="color:#c3ccd9;">&nbsp;&middot;&nbsp;</span>2 min
+                </p>
+              </div>
+            </td>
+          </tr>
+          <!-- Spacer row -->
+          <tr><td colspan="2" height="22" style="font-size:0;line-height:0;">&nbsp;</td></tr>
+          <!-- Row 2: Briefs 3 & 4 -->
+          <tr>
+            <td class="stack-col" width="50%" valign="top" style="padding:0 12px 0 0;border-top:1px solid #e6ebf2;padding-top:18px;">
+              <p style="margin:0 0 6px;"><span style="font-family:'DM Sans',Arial,sans-serif;font-size:9px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#5a8020;background-color:#f0f7e0;padding:2px 7px;">Policy</span></p>
+              <p style="margin:0 0 6px;font-family:'Source Serif 4',Georgia,serif;font-size:14px;font-weight:600;line-height:1.32;color:#131c28;">
+                <a href="#" style="color:#131c28;text-decoration:none;">ADB Clears $340M AI for Development Initiative</a>
+              </p>
+              <p style="margin:0 0 7px;font-family:'DM Sans',Arial,sans-serif;font-size:12px;line-height:1.55;color:#3a4655;">Covers 12 member nations &mdash; loan risk, project monitoring, climate modeling.</p>
+              <p style="margin:0;font-family:'DM Sans',Arial,sans-serif;font-size:10px;color:#7a8799;line-height:1.4;">
+                <a href="#" style="color:#3a4655;text-decoration:none;font-weight:500;">ADB.org</a>
+                <span style="color:#c3ccd9;">&nbsp;&middot;&nbsp;</span>News Release
+                <span style="color:#c3ccd9;">&nbsp;&middot;&nbsp;</span>2 min
+              </p>
+            </td>
+            <td class="stack-col" width="50%" valign="top" style="padding:0 0 0 12px;border-top:1px solid #e6ebf2;border-left:1px solid #e6ebf2;padding-top:18px;">
+              <div style="padding-left:12px;">
+                <p style="margin:0 0 6px;"><span style="font-family:'DM Sans',Arial,sans-serif;font-size:9px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#7a4dab;background-color:#f3edfa;padding:2px 7px;">Research</span></p>
+                <p style="margin:0 0 6px;font-family:'Source Serif 4',Georgia,serif;font-size:14px;font-weight:600;line-height:1.32;color:#131c28;">
+                  <a href="#" style="color:#131c28;text-decoration:none;">BIS Working Paper Maps AI Adoption Across Central Banks</a>
+                </p>
+                <p style="margin:0 0 7px;font-family:'DM Sans',Arial,sans-serif;font-size:12px;line-height:1.55;color:#3a4655;">62% of surveyed banks now deploy ML in supervisory workflows.</p>
+                <p style="margin:0;font-family:'DM Sans',Arial,sans-serif;font-size:10px;color:#7a8799;line-height:1.4;">
+                  <a href="#" style="color:#3a4655;text-decoration:none;font-weight:500;">BIS</a>
+                  <span style="color:#c3ccd9;">&nbsp;&middot;&nbsp;</span>Working Paper
+                  <span style="color:#c3ccd9;">&nbsp;&middot;&nbsp;</span>4 min
+                </p>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <!-- ═══ FOOTER ═══ -->
+    <tr>
+      <td style="background-color:#002569;padding:28px 40px;">
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="padding-bottom:16px;margin-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.12);">
+          <tr>
+            <td valign="middle" width="120" style="padding-right:14px;">
+              <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                <tr><td class="dm-protect" bgcolor="#ffffff" style="background-color:#ffffff;padding:6px 10px;border-radius:3px;line-height:0;font-size:0;">
+                  <img src="https://placehold.co/86x24/ffffff/002569/png?text=ADB&amp;font=source-sans-pro" width="86" height="24" alt="ADB" style="display:block;width:86px;height:24px;border:0;outline:none;">
+                </td></tr>
+              </table>
+            </td>
+            <td valign="middle">
+              <p style="margin:0 0 2px;font-family:'DM Sans',Arial,sans-serif;font-size:12px;font-weight:500;color:#ffffff;line-height:1.45;">Weekly AI Digest</p>
+              <p style="margin:0;font-family:'DM Sans',Arial,sans-serif;font-size:11px;color:rgba(255,255,255,0.55);line-height:1.5;">Produced by ITD's AI &amp; Big Data Team</p>
+            </td>
+          </tr>
+        </table>
+        <p style="margin:0 0 12px;">
+          <a href="#" style="font-family:'DM Sans',Arial,sans-serif;font-size:11px;color:rgba(255,255,255,0.4);text-decoration:none;margin-right:14px;">ADB.org</a>
+          <a href="#" style="font-family:'DM Sans',Arial,sans-serif;font-size:11px;color:rgba(255,255,255,0.4);text-decoration:none;">View in Browser</a>
+        </p>
+        <p style="margin:0 0 10px;font-family:'DM Sans',Arial,sans-serif;font-size:11px;color:rgba(255,255,255,0.55);line-height:1.7;">The Weekly AI Digest is produced by the AI &amp; Big Data Team in ITD at the Asian Development Bank. Questions or comments? Reach out at <a href="/cdn-cgi/l/email-protection#a2c3cbc0cbc5c6c3d6c3e2c3c6c08ccdd0c5" style="color:#69c8e2;text-decoration:underline;"><span class="__cf_email__" data-cfemail="dcbdb5beb5bbb8bda8bd9cbdb8bef2b3aebb">[email&#160;protected]</span></a>.</p>
+        <p style="margin:0;font-family:'DM Sans',Arial,sans-serif;font-size:11px;color:rgba(255,255,255,0.28);line-height:1.65;">&copy; 2026 Asian Development Bank. 6 ADB Avenue, Mandaluyong City, 1550 Metro Manila, Philippines.</p>
+      </td>
+    </tr>
+
+  </table>
+</td></tr>
+</table>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>

@@ -1,0 +1,517 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="color-scheme" content="light dark">
+  <meta name="supported-color-schemes" content="light dark">
+  <title>ADB's Responsible AI Digest — Issue #001</title>
+  <!--[if mso]>
+<style type="text/css">
+  body, table, td { font-family: Arial, sans-serif !important; }
+
+  /* ════════════════════════════════════════════════════════════════
+     DARK MODE
+     Supported in Apple Mail (iOS/macOS), Outlook for Mac/iOS, Thunderbird
+     via prefers-color-scheme. Outlook.com / 365 handled via [data-ogsc]
+     parallel selectors. Gmail mobile runs its own auto-invert with no
+     opt-in — high-contrast design + .dm-protect on the logo chip keeps
+     critical elements legible there. !important is required to win
+     against inline styles. Color targeting uses [style*=] substring
+     matching so we don't need a class on every text element.
+     ════════════════════════════════════════════════════════════════ */
+  :root { color-scheme: light dark; supported-color-schemes: light dark; }
+
+  @media (prefers-color-scheme: dark) {
+    /* Card surface */
+    .email-container { background-color: #1a1f2a !important; }
+    body, #bodyTable { background-color: #0a0c10 !important; }
+    /* Body text */
+    [style*="color:#131c28"] { color: #f0f3f8 !important; }
+    [style*="color:#3a4655"] { color: #d2d8e2 !important; }
+    [style*="color:#7a8799"] { color: #9aa5b7 !important; }
+    [style*="color:#c3ccd9"] { color: #4a5566 !important; }
+    /* Borders */
+    [style*="border-bottom:1px solid #dde3ec"] { border-bottom-color: #2a3340 !important; }
+    [style*="border-bottom:1px solid #eef1f5"] { border-bottom-color: #2a3340 !important; }
+    [style*="border-top:1px solid #e6ebf2"] { border-top-color: #2a3340 !important; }
+    [style*="border-left:1px solid #e6ebf2"] { border-left-color: #2a3340 !important; }
+    /* Briefs section soft bg + hero soft bg (Variant B) */
+    [style*="background-color:#f8f9fb"] { background-color: #14181f !important; }
+    [style*="background-color:#edf5fa;padding:32px"] { background-color: #0f1d2e !important; }
+    /* Category tag chips: dim the soft pastel backgrounds so the dark text reads */
+    [style*="background-color:#edf5fa;padding:2px"] { background-color: #0a2233 !important; }
+    [style*="background-color:#e0f5fb;padding:2px"] { background-color: #0a2a36 !important; }
+    [style*="background-color:#fdf0ec;padding:2px"] { background-color: #2e1612 !important; }
+    [style*="background-color:#f0f7e0;padding:2px"] { background-color: #1d2a0a !important; }
+    [style*="background-color:#f3edfa;padding:2px"] { background-color: #1c1129 !important; }
+    /* Category tag text colors (dark on light) — lift to light tones */
+    [style*="color:#007db7;background-color:#edf5fa"] { color: #69c8e2 !important; }
+    [style*="color:#007a9e;background-color:#e0f5fb"] { color: #69c8e2 !important; }
+    [style*="color:#b83c18;background-color:#fdf0ec"] { color: #ff8a6a !important; }
+    [style*="color:#5a8020;background-color:#f0f7e0"] { color: #b9d77a !important; }
+    [style*="color:#7a4dab;background-color:#f3edfa"] { color: #c8a8ed !important; }
+    /* Banner CTA button: keep readable */
+    [style*="background-color:#002569;text-decoration:none;padding"] { background-color: #007db7 !important; }
+    [style*="background-color:#131c28;text-decoration:none;padding"] { background-color: #007db7 !important; }
+    /* Variant B's white header surface — darken to match card so its text reads */
+    [style*="background-color:#ffffff;padding:22px"] { background-color: #1a1f2a !important; }
+    /* Protect: logo chip and anything that must stay white */
+    .dm-protect, .dm-protect td { background-color: #ffffff !important; }
+  }
+
+  /* Outlook.com / Outlook 365 dark mode (proprietary attribute hooks) */
+  [data-ogsc] .email-container { background-color: #1a1f2a !important; }
+  [data-ogsc] [style*="color:#131c28"] { color: #f0f3f8 !important; }
+  [data-ogsc] [style*="color:#3a4655"] { color: #d2d8e2 !important; }
+  [data-ogsc] [style*="color:#7a8799"] { color: #9aa5b7 !important; }
+  [data-ogsc] [style*="color:#c3ccd9"] { color: #4a5566 !important; }
+  [data-ogsb] [style*="background-color:#f8f9fb"] { background-color: #14181f !important; }
+  [data-ogsb] [style*="background-color:#edf5fa;padding:32px"] { background-color: #0f1d2e !important; }
+  [data-ogsc] [style*="background-color:#ffffff;padding:22px"] { background-color: #1a1f2a !important; }
+  [data-ogsc] .dm-protect, [data-ogsc] .dm-protect td { background-color: #ffffff !important; }
+</style>
+<![endif]-->
+  <style type="text/css">
+    body,
+    #bodyTable {
+      margin: 0 !important;
+      padding: 0 !important;
+      width: 100% !important;
+    }
+
+    img {
+      border: 0;
+      outline: none;
+      text-decoration: none;
+      -ms-interpolation-mode: bicubic;
+      display: block;
+    }
+
+    a {
+      color: #007db7;
+    }
+
+    table {
+      border-collapse: collapse !important;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap');
+
+    @media only screen and (max-width: 620px) {
+      .email-container {
+        width: 100% !important;
+      }
+
+      .mobile-padding {
+        padding: 20px !important;
+      }
+
+      .hero-title {
+        font-size: 22px !important;
+      }
+
+      .stack {
+        display: block !important;
+        width: 100% !important;
+      }
+
+      .stack-img {
+        width: 100% !important;
+        height: auto !important;
+        max-width: 100% !important;
+        margin-bottom: 14px !important;
+      }
+
+      .stack-pad {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+
+      /* Briefs grid: stack to 1 column on mobile and drop dividing borders */
+      .stack-col {
+        display: block !important;
+        width: 100% !important;
+        padding: 18px 0 0 0 !important;
+        border-left: 0 !important;
+      }
+
+      .stack-col>div {
+        padding-left: 0 !important;
+      }
+    }
+  </style>
+</head>
+
+<body style="margin:0;padding:0;background-color:#d8dde6;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">
+
+  <div style="display:none;max-height:0;overflow:hidden;mso-hide:all;">This week: IMF AI governance report, OpenAI
+    enterprise pricing, EU AI Act enforcement begins &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;</div>
+
+  <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" id="bodyTable"
+    style="background-color:#d8dde6;">
+    <tr>
+      <td align="center" valign="top" style="padding:32px 16px;">
+
+        <table role="presentation" class="email-container" border="0" cellpadding="0" cellspacing="0" width="600"
+          style="background-color:#ffffff;">
+
+          <!-- ═══ TOP BAR ═══ -->
+          <tr>
+            <td height="5" style="background-color:#002569;font-size:0;line-height:0;">&nbsp;</td>
+          </tr>
+
+          <!-- ═══ HEADER ═══ -->
+          <tr>
+            <td style="background-color:#ffffff;padding:22px 40px;border-bottom:1px solid #dde3ec;">
+              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                  <td valign="middle">
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <!-- Logo on white header — your blue logo reads natively, no chip needed -->
+                        <td valign="middle" style="padding-right:14px;">
+                          <img
+                            src="https://upload.wikimedia.org/wikipedia/commons/4/43/Asian_Development_Bank_logo.svg?utm_source=commons.wikimedia.org&amp;utm_campaign=index&amp;utm_content=original"
+                            width="60" height="60" alt="ADB"
+                            style="display:block;width:60px;height:60px;border:0;outline:none;">
+                        </td>
+                        <td valign="middle">
+                          <p
+                            style="margin:0;font-family:'DM Sans',Arial,sans-serif;font-size:14px;font-weight:600;color:#131c28;">
+                            ADB's Responsible AI Digest</p>
+                          <p style="margin:0;font-family:'DM Sans',Arial,sans-serif;font-size:12px;color:#7a8799;">Asian
+                            Development Bank</p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                  <td valign="middle" align="right">
+                    <p
+                      style="margin:0;font-family:'Courier New',Courier,monospace;font-size:10px;color:#7a8799;letter-spacing:0.06em;text-align:right;line-height:1.6;">
+                      MAY 13, 2026<br><span style="font-size:9px;opacity:0.7;">Issue No. 001</span></p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ═══ HERO ═══ -->
+          <tr>
+            <td style="background-color:#edf5fa;padding:32px 40px 38px;border-bottom:1px solid #dde3ec;">
+              <p
+                style="margin:0 0 10px 0;font-family:'DM Sans',Arial,sans-serif;font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#007db7;">
+                AI Digest</p>
+              <h1 class="hero-title"
+                style="margin:0 0 12px 0;font-family:'Source Serif 4',Georgia,serif;font-size:26px;font-weight:400;line-height:1.3;color:#131c28;letter-spacing:-0.01em;">
+                Artificial Intelligence: Developments Shaping the Field</h1>
+              <p
+                style="margin:0 0 20px 0;font-family:'DM Sans',Arial,sans-serif;font-size:14px;line-height:1.65;color:#3a4655;">
+                A curated briefing on consequential advances in AI, spanning model releases, research, policy, and industry adoption.</p>
+              <!--[if mso]>
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr>
+          <td width="28" height="4" style="background-color:#007db7;border-radius:2px;font-size:0;">&nbsp;</td>
+          <td width="5">&nbsp;</td>
+          <td width="28" height="4" style="background-color:#00a5d2;border-radius:2px;font-size:0;">&nbsp;</td>
+          <td width="5">&nbsp;</td>
+          <td width="28" height="4" style="background-color:#8dc63f;border-radius:2px;font-size:0;">&nbsp;</td>
+          <td width="5">&nbsp;</td>
+          <td width="28" height="4" style="background-color:#e9532b;border-radius:2px;font-size:0;">&nbsp;</td>
+        </tr></table>
+        <![endif]-->
+              <!--[if !mso]><!-->
+              <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td width="28" height="4" style="background-color:#007db7;border-radius:2px;font-size:0;">&nbsp;</td>
+                  <td width="5">&nbsp;</td>
+                  <td width="28" height="4" style="background-color:#00a5d2;border-radius:2px;font-size:0;">&nbsp;</td>
+                  <td width="5">&nbsp;</td>
+                  <td width="28" height="4" style="background-color:#8dc63f;border-radius:2px;font-size:0;">&nbsp;</td>
+                  <td width="5">&nbsp;</td>
+                  <td width="28" height="4" style="background-color:#e9532b;border-radius:2px;font-size:0;">&nbsp;</td>
+                </tr>
+              </table>
+              <!--<![endif]-->
+            </td>
+          </tr><!-- ═══════════════════════════════════════════════════════════
+                   ARTICLE TYPE 1 — BANNER (lead / major internal release)
+                   Full-bleed image, large headline, prominent positioning.
+                   Use for the most important story of the issue.
+                   ═══════════════════════════════════════════════════════════ -->
+          <tr>
+            <td style="padding:32px 40px 0;">
+              <p
+                style="margin:0 0 18px 0;display:inline-block;font-family:'DM Sans',Arial,sans-serif;font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#e9532b;padding-bottom:8px;border-bottom:2px solid #e9532b;">
+                01</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:0 40px 8px;">
+              <a href="#" style="text-decoration:none;display:block;">
+                    <img src="https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Embargoed/31-07-2024-Unsplash-AI-01.jpg/image1170x530cropped.jpg" width="520" height="250" alt="UN AI panel on global impact study" style="display:block;width:100%;max-width:520px;height:auto;background-color:#002569;border-radius:2px;">
+                  </a>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:14px 40px 28px;border-bottom:1px solid #dde3ec;">
+              <p style="margin:0 0 10px;">
+                <span style="font-family:'DM Sans',Arial,sans-serif;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#5a8020;background-color:#f0f7e0;padding:3px 9px;">AI Governance</span>
+              </p>
+              <h2
+                style="margin:0 0 8px;font-family:'Source Serif 4',Georgia,serif;font-size:24px;font-weight:600;line-height:1.25;color:#131c28;letter-spacing:-0.01em;">
+                <a href="#" style="color:#131c28;text-decoration:none;">Putting humans at the centre: UN AI panel begins work on global impact study</a>
+              </h2>
+              <p style="margin:0 0 12px;font-family:'DM Sans',Arial,sans-serif;font-size:11px;color:#7a8799;line-height:1.5;">
+                <a href="#" style="color:#3a4655;text-decoration:none;font-weight:500;">Conor Lennon and Khaled Mohamed</a>
+                <span style="color:#c3ccd9;">&nbsp;&middot;&nbsp;</span>Published April 11, 2026 by UN News
+                <span style="color:#c3ccd9;">&nbsp;&middot;&nbsp;</span>7 min read
+              </p>
+              <p style="margin:0 0 14px;font-family:'DM Sans',Arial,sans-serif;font-size:14px;line-height:1.65;color:#3a4655;">
+                The UN’s Independent International Scientific Panel on AI – the first global body of its kind – is gearing up for its
+                inaugural in-person summit.
+              </p>
+              <a href="https://news.un.org/en/story/2026/04/1167263" style="font-family:'DM Sans',Arial,sans-serif;font-size:13px;font-weight:600;color:#ffffff;background-color:#002569;text-decoration:none;padding:10px 18px;display:inline-block;border-radius:3px;">Read the full article &rarr;</a>
+            </td>
+          </tr><!-- ═══════════════════════════════════════════════════════════
+                   ARTICLE TYPE 1 — BANNER (lead / major internal release)
+                   Full-bleed image, large headline, prominent positioning.
+                   Use for the most important story of the issue.
+                   ═══════════════════════════════════════════════════════════ -->
+          <tr>
+            <td style="padding:32px 40px 0;">
+              <p
+                style="margin:0 0 18px 0;display:inline-block;font-family:'DM Sans',Arial,sans-serif;font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#e9532b;padding-bottom:8px;border-bottom:2px solid #e9532b;">
+                02</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:0 40px 8px;">
+              <a href="#" style="text-decoration:none;display:block;">
+                    <img src="https://static.vecteezy.com/system/resources/previews/067/459/384/non_2x/of-hands-typing-on-laptop-in-a-blurred-cafe-setting-a-modern-business-and-technology-image-free-photo.jpeg" width="520" height="250" alt="Claude Opus and Qwen AI models for agentic workflows" style="display:block;width:100%;max-width:520px;height:auto;background-color:#002569;border-radius:2px;">
+                  </a>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:14px 40px 28px;border-bottom:1px solid #dde3ec;">
+              <p style="margin:0 0 10px;">
+                <span style="font-family:'DM Sans',Arial,sans-serif;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#5a8020;background-color:#f0f7e0;padding:3px 9px;">AI Models</span>
+              </p>
+              <h2
+                style="margin:0 0 8px;font-family:'Source Serif 4',Georgia,serif;font-size:24px;font-weight:600;line-height:1.25;color:#131c28;letter-spacing:-0.01em;">
+                <a href="#" style="color:#131c28;text-decoration:none;">From Benchmarks to Workflows: The Next Generation of Agentic AI</a>
+              </h2>
+              <p style="margin:0 0 12px;font-family:'DM Sans',Arial,sans-serif;font-size:11px;color:#7a8799;line-height:1.5;">
+                <a href="#" style="color:#3a4655;text-decoration:none;font-weight:500;">Agnes Lazo</a>
+                <span style="color:#c3ccd9;">&nbsp;&middot;&nbsp;</span>Published May 13, 2026
+                <span style="color:#c3ccd9;">&nbsp;&middot;&nbsp;</span>2 min read
+              </p>
+              <p style="margin:0 0 14px;font-family:'DM Sans',Arial,sans-serif;font-size:14px;line-height:1.65;color:#3a4655;">
+                On April 16, 2026, the AI landscape shifted with the release of Anthropic’s <a href="#" style="color:#007db7;text-decoration:underline;">Claude Opus 4.7</a> and Alibaba’s <a href="#" style="color:#007db7;text-decoration:underline;">Qwen
+                3.6-35B-A3B</a>. These models represent a transition from standard chatbots toward "agentic" systems designed for
+                autonomous, multi-step tasks in data-heavy environments like software engineering and finance.
+                <br>
+                <br>
+                <span style="display:inline-block;font-family:'DM Sans',Arial,sans-serif;font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#007db7;padding-bottom:6px;border-bottom:1px solid #dde3ec;">New Capabilities</span>
+                <br>
+                <br>
+                Claude Opus 4.7 introduces better vision, allowing it to map the precise coordinates of UI elements. It can navigate a
+                Bloomberg terminal or complex IDE just like a human. Meanwhile, the latest Qwen 3.6-35B-A3B introduces "Thinking
+                Preservation." Unlike predecessors, it retains reasoning traces across multiple turns, preventing the model from losing
+                its "train of thought" during long debugging sessions or complex financial audits. This is paired with enhanced "Spatial
+                Intelligence" for pinpoint object detection within dense graphical interfaces.
+                <br>
+                <br>
+                <span style="display:inline-block;font-family:'DM Sans',Arial,sans-serif;font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#007db7;padding-bottom:6px;border-bottom:1px solid #dde3ec;">The Evolution of the Benchmark</span>
+                <br>
+                <br>
+                These advances have rendered old tests like MMLU obsolete. Evaluation is shifting toward functional benchmarks like
+                SWE-bench Verified for coding. Notably, Claude Opus 4.7 has set a new bar in professional workflows, scoring 64.4% on
+                the Finance Agent v1.1 benchmark—outperforming competitors in long-context financial research and decision support.
+                <br>
+                <br>
+                However, these "Thinking Modes" demand massive compute. We are now seeing the rise of Sustainability Benchmarks, which
+                track energy intensity and water consumption per query. In 2026, a model’s value isn't just its IQ, but its
+                "insight-per-watt." For the data-conscious engineer, the smartest AI is now the one that scales without an unsustainable
+                carbon footprint.
+              </p>
+            </td>
+          </tr><!-- ═══════════════════════════════════════════════════════════
+                   ARTICLE TYPE 1 — BANNER (lead / major internal release)
+                   Full-bleed image, large headline, prominent positioning.
+                   Use for the most important story of the issue.
+                   ═══════════════════════════════════════════════════════════ -->
+          <tr>
+            <td style="padding:32px 40px 0;">
+              <p
+                style="margin:0 0 18px 0;display:inline-block;font-family:'DM Sans',Arial,sans-serif;font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#e9532b;padding-bottom:8px;border-bottom:2px solid #e9532b;">
+                03</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:0 40px 8px;">
+              <a href="#" style="text-decoration:none;display:block;">
+                    <img src="https://miro.medium.com/v2/resize:fit:1400/1*WkjPRxKMpRPkME13bIzceg.png" width="520" height="250" alt="Google NotebookLM AI research tool interface" style="display:block;width:100%;max-width:520px;height:auto;background-color:#002569;border-radius:2px;">
+                  </a>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:14px 40px 28px;border-bottom:1px solid #dde3ec;">
+              <p style="margin:0 0 10px;">
+                <span style="font-family:'DM Sans',Arial,sans-serif;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#5a8020;background-color:#f0f7e0;padding:3px 9px;">AI Products</span>
+              </p>
+              <h2
+                style="margin:0 0 8px;font-family:'Source Serif 4',Georgia,serif;font-size:24px;font-weight:600;line-height:1.25;color:#131c28;letter-spacing:-0.01em;">
+                <a href="#" style="color:#131c28;text-decoration:none;">What Is NotebookLM? Google's AI Research Tool, Explained</a>
+              </h2>
+              <p style="margin:0 0 12px;font-family:'DM Sans',Arial,sans-serif;font-size:11px;color:#7a8799;line-height:1.5;">
+                <a href="#" style="color:#3a4655;text-decoration:none;font-weight:500;">Raphael Ongleo</a>
+                <span style="color:#c3ccd9;">&nbsp;&middot;&nbsp;</span>Published May 13, 2026
+                <span style="color:#c3ccd9;">&nbsp;&middot;&nbsp;</span>2 min read
+              </p>
+              <p style="margin:0 0 14px;font-family:'DM Sans',Arial,sans-serif;font-size:14px;line-height:1.65;color:#3a4655;">
+                <a href="https://notebooklm.google" style="color:#007db7;text-decoration:underline;">NotebookLM</a> is Google's AI-powered research and knowledge management tool, and it's one of the more distinctively useful
+                AI products out there.
+                <br>
+                <br>
+                NotebookLM (the LM stands for "Language Model") is a research and note-taking online tool developed by Google Labs that
+                uses Google's Gemini AI to help users interact with their own documents.
+                <br>
+                <br>
+                Unlike ChatGPT or Claude, which draw on broad training data, NotebookLM only answers questions based on the sources you
+                upload - making it highly accurate and trustworthy for research. It doesn't hallucinate in the traditional sense because
+                it only uses your uploaded documents, and every answer includes citations linking back to source material. You can
+                upload PDFs, website links, YouTube videos, Google Drive documents, and manually pasted text to create a centralized
+                research hub. Each notebook can hold up to 50 sources on the free tier.
+                <br>
+                <br>
+                <span style="display:inline-block;font-family:'DM Sans',Arial,sans-serif;font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#007db7;padding-bottom:6px;border-bottom:1px solid #dde3ec;">Standout features</span>
+                <br>
+                <br>
+                Audio Overviews - Released in September 2024, this converts your documents into a conversational, podcast-like
+                discussion between two AI hosts. Google later expanded this to more than 80 languages.
+                <br>
+                Video Overviews - Transforms document summaries into visual slide-style videos combining AI narration, images, diagrams,
+                and structured explanations.
+                <br>
+                Studio outputs - You can visualize your material as a slide deck, infographic, or report, all grounded in your source
+                documents rather than pulling from the web.
+                <br>
+                Deep Research - A "Fast Research" mode surfaces around 10 relevant documents in under 30 seconds, while the Deep
+                Research option more slowly gathers many more sources.
+              </p>
+              <a href="https://notebooklm.google/" style="font-family:'DM Sans',Arial,sans-serif;font-size:13px;font-weight:600;color:#ffffff;background-color:#002569;text-decoration:none;padding:10px 18px;display:inline-block;border-radius:3px;">Check it out here</a>
+            </td>
+          </tr><!-- ═══════════════════════════════════════════════════════════
+                   ARTICLE TYPE 1 — BANNER (lead / major internal release)
+                   Full-bleed image, large headline, prominent positioning.
+                   Use for the most important story of the issue.
+                   ═══════════════════════════════════════════════════════════ -->
+          <tr>
+            <td style="padding:32px 40px 0;">
+              <p
+                style="margin:0 0 18px 0;display:inline-block;font-family:'DM Sans',Arial,sans-serif;font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#e9532b;padding-bottom:8px;border-bottom:2px solid #e9532b;">
+                04</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:0 40px 8px;">
+              <a href="#" style="text-decoration:none;display:block;">
+                    <img src="https://imageio.forbes.com/specials-images/imageserve/69b1ad29bc1d3aafb3bcf9fd/New-training-methods-are-teaching-robots-to-learn-like-humans--much-faster--and-using/0x0.jpg?width=960&dpr=2" width="520" height="250" alt="Robot learning from human demonstration in AI research" style="display:block;width:100%;max-width:520px;height:auto;background-color:#002569;border-radius:2px;">
+                  </a>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:14px 40px 28px;border-bottom:1px solid #dde3ec;">
+              <p style="margin:0 0 10px;">
+                <span style="font-family:'DM Sans',Arial,sans-serif;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#5a8020;background-color:#f0f7e0;padding:3px 9px;">AI Research</span>
+              </p>
+              <h2
+                style="margin:0 0 8px;font-family:'Source Serif 4',Georgia,serif;font-size:24px;font-weight:600;line-height:1.25;color:#131c28;letter-spacing:-0.01em;">
+                <a href="#" style="color:#131c28;text-decoration:none;">AI is evolving from a tool into a collaborator—and current research is exposing both the limits of today’s systems and
+                the direction of what comes next.</a>
+              </h2>
+              <p style="margin:0 0 12px;font-family:'DM Sans',Arial,sans-serif;font-size:11px;color:#7a8799;line-height:1.5;">
+                <a href="#" style="color:#3a4655;text-decoration:none;font-weight:500;">Jude Teves</a>
+                <span style="color:#c3ccd9;">&nbsp;&middot;&nbsp;</span>Published May 13, 2026
+                <span style="color:#c3ccd9;">&nbsp;&middot;&nbsp;</span>3 min read
+              </p>
+              <p style="margin:0 0 14px;font-family:'DM Sans',Arial,sans-serif;font-size:14px;line-height:1.65;color:#3a4655;">
+                <a href="https://notebooklm.google" style="color:#007db7;text-decoration:underline;">New work from Anthropic</a> moves AI agent ethics from abstract principles into operational design. Instead of re‑arguing
+                why trustworthiness matters, the research shows how autonomous agents already plan, decide, and act across systems with
+                limited human oversight—and where real failure modes emerge. The value‑add is pragmatic: a concrete framework for
+                building trustworthy agents that embeds human control, transparency, security, alignment, and privacy directly into
+                system architecture. In short, as AI begins to collaborate with humans rather than merely respond to them, trust becomes
+                a design choice, not a policy afterthought.
+                <br>
+                <br>
+                In parallel, <a href="https://notebooklm.google" style="color:#007db7;text-decoration:underline;">research highlighted by Yann LeCun</a>  points to “world model” AI as a potential next frontier beyond large
+                language models. While LLMs are powerful pattern recognizers, they are fundamentally trained to predict text and lack a
+                grounded understanding of how the world behaves. World models aim to address this limitation by enabling AI systems to
+                learn cause‑and‑effect, physical constraints, and persistent state. Early results—such as robots learning hundreds of
+                real‑world tasks from minimal demonstration—suggest a path toward AI that can reason about environments, infrastructure,
+                and systems, not just language.
+                <br>
+                <br>
+                Why it matters now: Together, these developments signal a shift toward AI as an active collaborator—capable of taking
+                initiative and operating in real‑world contexts. The novelty is not the ethics discussion itself, but mounting evidence
+                that LLM‑only approaches have structural limits, and that more autonomous, world‑aware AI is approaching practical use.
+                This brings questions of governance, safeguards, and institutional readiness into the present, not the future.
+              </p>
+            </td>
+          </tr>
+
+          <!-- ═══ FOOTER ═══ -->
+          <tr>
+            <td style="background-color:#002569;padding:28px 40px;">
+              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%"
+                style="padding-bottom:16px;margin-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.12);">
+                <tr>
+                  <td valign="middle" width="120" style="padding-right:14px;">
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td class="dm-protect" bgcolor="#ffffff"
+                          style="background-color:#ffffff;padding:6px 6px;border-radius:3px;line-height:0;font-size:0;">
+                          <img
+                            src="https://upload.wikimedia.org/wikipedia/commons/4/43/Asian_Development_Bank_logo.svg?utm_source=commons.wikimedia.org&amp;utm_campaign=index&amp;utm_content=original"
+                            width="50" height="50" alt="ADB"
+                            style="display:block;width:50px;height:50px;border:0;outline:none;">
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                  <td valign="middle">
+                    <p
+                      style="margin:0 0 2px;font-family:'DM Sans',Arial,sans-serif;font-size:12px;font-weight:500;color:#ffffff;line-height:1.45;">
+                      ADB's Responsible AI Digest</p>
+                    <p
+                      style="margin:0;font-family:'DM Sans',Arial,sans-serif;font-size:11px;color:rgba(255,255,255,0.55);line-height:1.5;">
+                      by ADB AIBD</p>
+                  </td>
+                </tr>
+              </table>
+              <p style="margin:0 0 12px;">
+                <a href="#" style="font-family:'DM Sans',Arial,sans-serif;font-size:11px;color:rgba(255,255,255,0.4);text-decoration:none;margin-right:14px;">ADB.org</a>
+                <a href="#" style="font-family:'DM Sans',Arial,sans-serif;font-size:11px;color:rgba(255,255,255,0.4);text-decoration:none;">View in Browser</a>
+              </p>
+              <p
+                style="margin:0 0 10px;font-family:'DM Sans',Arial,sans-serif;font-size:11px;color:rgba(255,255,255,0.55);line-height:1.7;">
+                ADB's Responsible AI Digest is produced by the AI &amp; Big Data Lab in ITD at the Asian Development Bank.
+                Questions or comments? Reach out at
+                <a href="mailto:AI_Ops@adb.org" style="color:#69c8e2;text-decoration:underline;">AI_Ops@adb.org</a>.
+              </p>
+              <p
+                style="margin:0;font-family:'DM Sans',Arial,sans-serif;font-size:11px;color:rgba(255,255,255,0.28);line-height:1.65;">
+                &copy; 2026 Asian Development Bank. 6 ADB Avenue, Mandaluyong City, 1550 Metro Manila, Philippines.</p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+
+</html>
